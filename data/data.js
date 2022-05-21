@@ -1,14 +1,14 @@
 export const data = [
     {
         text: "¿Cuanto es 2 x 5?",
-        options: ["20", "7", "14", "3"],
-        anwser: "20",
+        options: ["10", "7", "14", "3"],
+        anwser: "10",
         category: "easy",
     },
     {
         text: "¿Cuanto es (50 + 10) / 2?",
         options: ["55", "60", "30", "35"],
-        anwser: "35",
+        anwser: "30",
         category: "basic",
     },
     {
