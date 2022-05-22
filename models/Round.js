@@ -20,12 +20,10 @@ class Round {
 
     pauseGame () {
         questionUi.showPausedGame(this.player.level);
-        console.log("juego pausado");
     }
 
     resumeGame() {
         this.nextRound();
-        console.log("Juego retomado");
     }
 
     endGame() {
@@ -50,9 +48,6 @@ class Round {
         if (question.answer === option){
             this.player.score += 100;
             this.player.level ++;
-            console.log("correcto!");
-            console.log("Puntos del jugador: "+this.player.score)
-            console.log("Nivel: "+this.player.level);
             questionUi.showCorrect(this.player.score);
             setTimeout(() => {
                 this.nextRound();
