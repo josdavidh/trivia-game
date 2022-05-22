@@ -1,13 +1,9 @@
 //Modelo de las rondas
-
-import { Question } from './Question.js';
-import { Player } from './Player.js';
 import { QuestionUi } from '../views/QuestionUi.js';
 
-class Round {
-    score = 0;
-    level = 1;
+const questionUi = new QuestionUi();
 
+class Round {
     constructor({
         questions,
         player
@@ -16,57 +12,84 @@ class Round {
         this.player = player;
     }
 
-    showGame(category) {
-        const question = this.questions.find(question => question.category === category);
-        const questionUi = new QuestionUi();
-        questionUi.showQuestion(question.text,question.options, (optionSelected) => {
-            this.attempt(question.text, optionSelected);
-        });
+    starGame() {
+        this.player.score = 0;
+        this.player.level = 0;
+        this.showGame("easy");
     }
 
-    attempt(text, option){
-        if (this.getQuestionByText(text).correctAnswer(option)){
+    pauseGame () {
+        questionUi.showPausedGame(this.player.level);
+        console.log("juego pausado");
+    }
+
+    resumeGame() {
+        this.nextRound();
+        console.log("Juego retomado");
+    }
+
+    endGame() {
+        questionUi.showGameResult(this.player.level, this.player.score, this.player.winner);
+    }
+
+
+    showGame(category) {
+        // busca las preguntas por categoria
+        const questionsCategory = this.questions.find(question => question[category]);
+        // se selecciona una pregunta aleatoriamente
+        const question = questionsCategory[category][Math.floor(Math.random() * questionsCategory[category].length)]; 
+
+        questionUi.showQuestion(question.text,question.options, (optionSelected) => {
+            this.attempt(question, optionSelected);
+        });
+
+        questionUi.showStadistics(this.player.level, this.player.score);
+    }
+
+    attempt(question, option){
+        if (question.answer === option){
             this.player.score += 100;
-            this.level++;
+            this.player.level ++;
             console.log("correcto!");
             console.log("Puntos del jugador: "+this.player.score)
-            console.log("Nivel: "+this.level);
-            this.nextRound();
-        } else this.endGame();
+            console.log("Nivel: "+this.player.level);
+            questionUi.showCorrect(this.player.score);
+            setTimeout(() => {
+                this.nextRound();
+            }, 3000);
+
+    
+        } else {
+            questionUi.showIncorrect();
+            this.player.winner = false;
+            this.endGame();
+        }
     }
 
     nextRound() {
-        switch(this.level) {
-            case 1 :
+        switch(this.player.level) {
+            case 0 :
                 this.showGame("easy");
             break;
-            case 2 : 
+            case 1 : 
                 this.showGame("basic");
             break;
-            case 3 : 
+            case 2 : 
                 this.showGame("medium");
             break;
-            case 4 : 
+            case 3 : 
                 this.showGame("intermediate");
             break;
-            case 5 : 
+            case 4 : 
                 this.showGame("advanced");
             break;
-            case 6: 
+            case 5: 
+                this.player.winner = true;
+                this.player.level = 4;
                 this.endGame();
             break;
         }
     }
-
-    endGame() {
-        console.log("Juego terminado!!!");
-    }
-
-    getQuestionByText(text){
-        let questionIndex = this.questions.findIndex(question => question.text === text);
-        return this.questions[questionIndex];
-    }
-
 }
 
 export {Round};

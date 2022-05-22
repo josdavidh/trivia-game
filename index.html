@@ -15,21 +15,59 @@
       rel="stylesheet"
     />
 
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
+    <header>
       <h1>Trivia Game</h1>
-        <section class="question-section">
-            <div class="question" id="question">
-                <h2 id="question--text"></h2>
-                <div class="options-container" id="options-container">
-                    <Button class="option-btn">Opcion 1</Button>
-                    <Button class="option-btn">Opcion 2</Button>
-                    <Button class="option-btn">Opcion 3</Button>
-                    <Button class="option-btn">Opcion 4</Button>
-                </div>
-        </section>
-      
+      <div class="stadistic-bar">
+        <div class="round-container">
+          <h2 id="round">Rondas: 5</h2>
+        </div>
+        <div class="player-container">
+          <div class="player-container--coins">
+            <span><i class="fas fa-coins"></i></span>
+            <p id="score">0</p>
+          </div>
+          <div class="player-container--name">
+            <span><i class="fas fa-user"></i></span>
+            <p id="name">Tu</p>
+          </div>
+        </div>
       </div>
+    </header>
+    <main>
+      <div class="main-container" id="main-container">
+        <div class="question-message">
+          <h2 id="question-message--title"></h2>
+          <p id="question-message--points"></p>
+        </div>
+        <div class="question-container" id="question">
+          <h2 id="question--text"></h2>
+          <div class="options-container" id="options-container">
+          </div>
+        </div>
+
+
+        <div class="game-message-container">
+          <h2 id="game-message-title">Responde las siguientes preguntas!</h2>
+          <p id="game-message-description">Trivia Game es un juego de 5 rondas donde tendrás que responder una serie de 5 preguntas aleatorias. Cada vez que respondas correctamente pasarás a la siguiente pregunta que tendrá un nivel de dificultad mayor. ¿Estás listo?</p>
+          <button id="game-btn-start" class="setting-btn" >Empezar</button>
+        </div>
+
+      </div>
+      <div id="config-container">
+        <button id="pause-btn" class="setting-btn">Pausar</button>
+        <button id="resume-btn" class="setting-btn">Reanudar</button>
+      </div>
+    </main>
     <!-- Scripts -->
     <script type="module" src="./js/index.js"></script>
   </body>

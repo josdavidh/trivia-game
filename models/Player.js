@@ -1,11 +1,13 @@
 //Modelo del jugador
 class Player {
-    score = 0;
+    winner = false;
 
     constructor({
-        name,
+        score,
+        level,
     }) {
-        this.name = name
+        this.score = score;
+        this.level = level;
     }
 }
 

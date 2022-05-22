@@ -4,57 +4,235 @@
   box-sizing: border-box;
 }
 
+:root {
+  --white: #EDE6DB;
+  --softBlue: #417D7A;
+  --blue: #1D5C63;
+  --blueTransparent: #1d5c634f;
+  --blackBlue: #1A3C40;
+  --red: #874356;
+  --justWhite: #fff;
+}
 html {
   font-size: 62.5%;
   font-family: "DM Sans", sans-serif;
 }
 
 body {
-  background-color: #333;
+  background-color: var(--softBlue);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
 }
 
 h1 {
   margin-top: 40px;
   font-size: 4.5rem;
   line-height: 4.7rem;
-  color: #fff;
+  color: var(--justWhite);
   text-align: center;
 }
 
-.question-section {
-  padding: 30px 15px;
-}
-
-.question {
+.stadistic-bar {
   width: 100%;
   height: auto;
   min-width: 288px;
-  max-width: 450px;
-  margin: 0 auto;
-  padding: 20px 10px;
-  background-color: #1b553f;
+  max-width: 800px;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  font-weight: bold;
+  color: var(--white);
 }
 
-.question h2 {
+.round-container h2{
+  font-size: 2.2rem;
+  line-height: 2.4rem;
+  margin-left: 10px;
+}
+
+.player-container {
+  display: flex;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  padding-right: 15px;
+}
+
+.player-container--coins {
+  display: flex;
+}
+
+.player-container--coins p,
+.player-container--name span {
+  margin: 0 5px;
+}
+ 
+.player-container--name {
+  display: flex;
+}
+
+main {
+  display: grid;
+  padding: 0 15px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+  min-width: 288px;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 20px 15px;
+  background-color: var(--blueTransparent);
+  border-radius: 8px;
+}
+
+.question-container h2 {
+  max-width: 500px;
   text-align: center;
   font-size: 2.1rem;
   line-height: 2.3rem;
+  margin-top: 10px;
+  font-weight: lighter;
 }
 
 .options-container {
+  max-width: 500px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
 .option-btn {
-  width: 250px;
+  width: 220px;
   font-size: 1.8rem;
   line-height: 2rem;
   cursor: pointer;
-  margin: 8px 0;
-  padding: 5px;
+  margin: 8px 5px;
+  padding: 15px 5px;
   outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--white);
+}
+
+.option-btn:hover {
+  box-shadow: 5px 1px 20px rgba(0, 0, 0, 0.301);
+}
+
+.question-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+  min-width: 220px;
+  margin: 5px auto;
+  padding: 20px 0;
+  border-radius: 5px;
+  display: none;
+}
+
+.question-message--correct {
+  display: block;
+  background-color: var(--blackBlue);
+}
+
+.question-message--incorrect {
+  display: block;
+  background-color: var(--red);
+}
+
+.question-message h2{
+  text-align: center;
+  font-size: 3.8rem;
+  line-height: 4rem;
+  color: var(--justWhite);
+}
+
+.question-message p {
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 1.7rem;
+  margin-top: 5px;
+  color: var(--white);
+}
+
+.game-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 288px;
+  max-width: 600px;
+  height: auto;
+  margin: 10px;
+  padding-bottom: 20px;
+  color: var(--white);
+}
+
+#game-message-title {
+  font-size: 3.5rem;
+  line-height: 3.7rem;
+  text-align: center;
+}
+
+#game-message-description {
+  width: 100%;
+  min-width: 288px;
+  max-width: 450px;
+  font-size: 1.7rem;
+  line-height: 1.9rem;
+  text-align: center;
+  margin: 0 5px;
+  margin-top: 10px;
+}
+
+.setting-btn {
+  margin-top: 10px;
+  background-color: var(--blackBlue);
+  border: none;
+  padding: 10px 30px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 2rem;
+  color: var(--white);
+  transition: .4s all;
+}
+
+.setting-btn:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.301);
+}
+
+
+#config-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 288px;
+  max-width: 800px;
+  margin-bottom: 50px;
+  justify-self: center;
+  height: auto;
+}
+
+#pause-btn,
+#resume-btn {
+  display: none;
+  background-color: var(--blue);
 }
